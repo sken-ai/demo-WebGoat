@@ -19,7 +19,7 @@ script:
   - if [ ! -z "${TRAVIS_TAG}" ]; then mvn versions:set -DnewVersion=${TRAVIS_TAG:1};
     fi
   - mvn clean install -q
-  - skencli
+  - travis_wait 60 skencli
 cache:
   directories:
     - "$HOME/.m2"
