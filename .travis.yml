@@ -9,6 +9,7 @@ addons:
   apt:
     packages:
       - python3-pip
+      - python3-setuptools
 before_install:
   - pip3 install --upgrade --no-cache-dir --default-timeout=210 skencli
 script:
