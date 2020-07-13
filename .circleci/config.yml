@@ -1,0 +1,62 @@
+version: 2.1
+jobs:
+  scan:
+    machine:
+      image: circleci/classic:201808-01
+    steps:
+
+      - checkout
+
+      - run:
+          name: Install java 11
+          command: |
+            wget https://github.com/AdoptOpenJDK/openjdk11-binaries/releases/download/jdk-11.0.6%2B10/OpenJDK11U-jdk_x64_linux_hotspot_11.0.6_10.tar.gz -O /tmp/openjdk-11.tar.gz
+            sudo mkdir -p /usr/lib/jvm
+            sudo tar xfvz /tmp/openjdk-11.tar.gz --directory /usr/lib/jvm
+            rm -f /tmp/openjdk-11.tar.gz
+            sudo sh -c 'for bin in /usr/lib/jvm/jdk-11.0.6+10/bin/*; do update-alternatives --install /usr/bin/$(basename $bin) $(basename $bin) $bin 100; done'
+            sudo sh -c 'for bin in /usr/lib/jvm/jdk-11.0.6+10/bin/*; do update-alternatives --set $(basename $bin) $bin; done'
+
+      - run:
+          name: Install newer version of Maven
+          command: |
+            if [[ ! -z "$IS_MACHINE_EXECUTOR" ]]; then
+              cd /opt
+              sudo wget http://www-eu.apache.org/dist/maven/maven-3/3.5.4/binaries/apache-maven-3.5.4-bin.tar.gz
+              sudo tar -xvsf apache-maven-3.5.4-bin.tar.gz
+              echo "export PATH=/opt/apache-maven-3.5.4/bin:$PATH" >> $BASH_ENV
+              echo
+              echo "Updated mvn executable:"
+              mvn --version
+            else
+              echo "Running in non-machine executor, skipping."
+            fi
+
+      - run:
+          name: Compile
+          command: mvn clean compile
+          
+      - run:
+          name: Update pyenv
+          command: |
+            # Install pyenv-update to allow addition of python 3.7.0
+            git clone git://github.com/pyenv/pyenv-update.git $(pyenv root)/plugins/pyenv-update
+            pyenv update
+            pyenv install 3.6.9
+
+      - run:
+          name: Set Python Version
+          command: pyenv global 3.6.9
+
+      - run:
+          name: Install skencli
+          command: pip install --upgrade skencli
+
+      - run:
+          name: Scan
+          command: skencli
+
+workflows:
+  main:
+    jobs:
+      - scan
