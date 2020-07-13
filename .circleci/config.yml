@@ -35,7 +35,7 @@ jobs:
       - run:
           name: Compile
           command: mvn clean compile
-          
+
       - run:
           name: Update pyenv
           command: |
@@ -54,6 +54,7 @@ jobs:
 
       - run:
           name: Scan
+          no_output_timeout: 30m
           command: skencli
 
 workflows:
