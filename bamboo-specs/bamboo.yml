@@ -7,12 +7,17 @@ plan:
 
 stages:
   - Build the webgoat stage:
-    - Build
+    - Compile
+    - Scan
 
-Build:
+Compile:
   tasks:
     - script:
         - mvn compile
+
+Scan:
+  tasks:
+    - script:
         - pip3 install --user --upgrade skencli
         - export PATH="$HOME/.local/bin:$PATH"
         - skencli
