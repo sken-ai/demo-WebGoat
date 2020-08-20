@@ -6,8 +6,9 @@ plan:
   name: Build the webgoat
 
 stages:
-  - Build the webgoat stage:
+  - Compile the webgoat stage:
     - Compile
+  - Scan the webgoat stage:
     - Scan
 
 Compile:
