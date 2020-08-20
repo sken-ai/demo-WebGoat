@@ -1,0 +1,18 @@
+---
+version: 2
+plan:
+  project-key: WEBGOAT
+  key: WEBGOAT
+  name: Build the webgoat
+
+stages:
+  - Build the webgoat stage:
+    - Build
+
+Build:
+  tasks:
+    - script:
+        - mvn compile
+        - pip3 install --user --upgrade skencli
+        - export PATH="$HOME/.local/bin:$PATH"
+        - skencli
