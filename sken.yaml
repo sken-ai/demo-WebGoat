@@ -2,3 +2,10 @@ orgid: 8d9488e0-d974-4d7a-a91a-c11e43a29fdd
 appid: 5c183fe6-6aa9-4055-94b3-96a4902c24dc
 
 language: javascript, java
+variables:
+  DAST_URL: http://host.docker.internal:8080/WebGoat/
+  DAST_FULL_SCAN: true
+  DAST_LOGINURL: http://host.docker.internal:8080/WebGoat/j_spring_security_check
+  DAST_LOGINBODY: username={%username%}&amp;password={%password%}&amp;otp=
+  DAST_USERNAME: webgoat
+  DAST_PASSWORD: webgoat
