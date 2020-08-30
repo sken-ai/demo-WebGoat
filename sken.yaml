@@ -6,6 +6,6 @@ variables:
   DAST_URL: http://host.docker.internal:8080/WebGoat/
   DAST_FULL_SCAN: true
   DAST_LOGINURL: http://host.docker.internal:8080/WebGoat/j_spring_security_check
-  DAST_LOGINBODY: username={%username%}&amp;password={%password%}&amp;otp=
+  DAST_LOGINBODY: username={%username%}&amp;password={%password%}
   DAST_USERNAME: webgoat
   DAST_PASSWORD: webgoat

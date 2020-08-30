@@ -123,3 +123,25 @@ To change IP address add the following variable to WebGoat/webgoat-container/src
 server.address=x.x.x.x
 ```
 
+# Run full suite of skencli from command line
+
+## 1. Pull docker image of WebGoat
+Run below command only once.
+
+```shell
+docker pull webgoat/webgoat-7.1:latest
+```
+
+## 2. Start web application
+
+```shell
+docker run -p 8080:8080 -t webgoat/webgoat-7.1:latest
+```
+
+## 3. Run skencli
+Start a new command/terminal window.
+
+```shell
+cd demo-WebGoat
+skencli
+```
