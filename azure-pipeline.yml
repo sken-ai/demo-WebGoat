@@ -17,9 +17,9 @@ steps:
   displayName: Install_skencli
   inputs:
     targetType: 'inline'
-    script: pip install --upgrade skencli
+    script: pip install wheel && pip install --upgrade skencli
 - task: Bash@3
   displayName: Run_skencli
   inputs:
     targetType: 'inline'
-    script: /usr/local/bin/skencli
+    script: ~/.local/bin/skencli
