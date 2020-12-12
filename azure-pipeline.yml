@@ -4,27 +4,22 @@ trigger:
 pool:
   vmImage: 'ubuntu-latest'
 
-jobs:
-  - job: Compile
-    steps:
-    - task: Maven@3
-      inputs:
-        mavenPomFile: 'pom.xml'
-        javaHomeOption: 'JDKVersion'
-        jdkVersionOption: '11'
-        jdkArchitectureOption: 'x64'
-        goals: 'clean compile'
-  - job: Install_skencli
-    dependsOn: Compile
-    steps:
-    - task: Bash@3
-      inputs:
-        targetType: 'inline'
-        script: pip install --upgrade skencli
-  - job: Run_skencli
-    dependsOn: Install_skencli
-    steps:
-    - task: Bash@3
-      inputs:
-        targetType: 'inline'
-        script: ~/local/bin/skencli
+steps:
+- task: Maven@3
+  displayName: Compile
+  inputs:
+    mavenPomFile: 'pom.xml'
+    javaHomeOption: 'JDKVersion'
+    jdkVersionOption: '11'
+    jdkArchitectureOption: 'x64'
+    goals: 'clean compile'
+- task: Bash@3
+  displayName: Install_skencli
+  inputs:
+    targetType: 'inline'
+    script: pip install --upgrade skencli
+- task: Bash@3
+  displayName: Run_skencli
+  inputs:
+    targetType: 'inline'
+    script: ~/local/bin/skencli
