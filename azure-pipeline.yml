@@ -12,3 +12,11 @@ steps:
     jdkVersionOption: '11'
     jdkArchitectureOption: 'x64'
     goals: 'clean compile'
+- task: Bash@3
+  inputs:
+    targetType: 'inline'
+    script: pip install --upgrade skencli
+- task: Bash@3
+  inputs:
+    targetType: 'inline'
+    script: skencli
