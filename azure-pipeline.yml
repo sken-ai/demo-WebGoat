@@ -14,13 +14,13 @@ jobs:
         jdkVersionOption: '11'
         jdkArchitectureOption: 'x64'
         goals: 'clean compile'
-  - job: Install skencli
+  - job: Install_skencli
     steps:
     - task: Bash@3
       inputs:
         targetType: 'inline'
         script: pip install --upgrade skencli
-  - job: Run skencli
+  - job: Run_skencli
     steps:
     - task: Bash@3
       inputs:
