@@ -22,4 +22,4 @@ steps:
   displayName: Run_skencli
   inputs:
     targetType: 'inline'
-    script: ~/local/bin/skencli
+    script: /usr/local/bin/skencli
