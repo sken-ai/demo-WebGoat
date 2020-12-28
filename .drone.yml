@@ -12,8 +12,7 @@ steps:
 - name: Compile
   commands:
   - MVN_HOME=/opt/apache-maven
-  - PATH=$MVN_HOME/bin:$PATH:$HOME/.local/bin:$HOME/bin && export $PATH
-  - mvn compile
+  - $MVN_HOME/bin/mvn compile
 - name: Install skencli
   commands:
   - pip install --upgrade skencli
