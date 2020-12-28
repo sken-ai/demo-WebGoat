@@ -11,6 +11,8 @@ platform:
 steps:
 - name: Compile
   commands:
+  - MVN_HOME=/opt/apache-maven
+  - PATH=$MVN_HOME/bin:$PATH:$HOME/.local/bin:$HOME/bin && export $PATH
   - mvn compile
 - name: Install skencli
   commands:
